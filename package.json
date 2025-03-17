@@ -1,0 +1,51 @@
+{
+  "name": "flux",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@portabletext/react": "^3.2.1",
+    "@sanity/icons": "^3.7.0",
+    "@sanity/image-url": "^1.1.0",
+    "@sanity/vision": "^3.79.0",
+    "@tabler/icons-react": "^3.31.0",
+    "@tailwindcss/typography": "^0.5.16",
+    "@tsparticles/engine": "^3.8.1",
+    "@tsparticles/react": "^3.0.0",
+    "@tsparticles/slim": "^3.8.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.5.0",
+    "lucide-react": "^0.479.0",
+    "motion": "^12.5.0",
+    "next": "15.2.2",
+    "next-sanity": "^9.9.4",
+    "postcss": "^8.5.3",
+    "react": "^19.0.0",
+    "react-calendly": "^4.3.1",
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0",
+    "react-scroll": "^1.9.3",
+    "sanity": "^3.79.0",
+    "styled-components": "^6.1.15",
+    "tailwind-merge": "^3.0.2",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4.0.14",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/react-scroll": "^1.8.10",
+    "eslint": "^9",
+    "eslint-config-next": "15.2.2",
+    "tailwindcss": "^4.0.14",
+    "typescript": "^5"
+  }
+}
