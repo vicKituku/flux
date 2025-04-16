@@ -19,4 +19,14 @@ export namespace SanityTypes {
     _name: string;
     image: T;
   }
+  export interface Automation {
+    _id: string;
+    _createdAt: string;
+    _updatedAt: string;
+    title: string;
+    description: string;
+    slug: { current: string };
+    image: SanityImageAssetDocument;
+    content: any;
+  }
 }

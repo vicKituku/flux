@@ -25,17 +25,14 @@ const ShowcaseNavbar = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex gap-x-8 items-center text-gray-700 font-medium text-lg">
-          <Link href="/showcase" className="hover:text-blue-500">
-            Showcase
-          </Link>
           <Link href={"/"} className="hover:text-blue-500 cursor-pointer">
             Services
           </Link>
-          <Link href={"/"} className="hover:text-blue-500 cursor-pointer">
-            Process
+          <Link href="/automations" className="hover:text-blue-500">
+            Automations
           </Link>
-          <Link href={"/"} className="hover:text-blue-500 cursor-pointer">
-            Guarantees
+          <Link href="/blog" className="hover:text-blue-500">
+            Blog
           </Link>
         </div>
 
@@ -75,13 +72,6 @@ const ShowcaseNavbar = () => {
       {isOpen && (
         <div className="md:hidden flex flex-col items-center gap-4 py-4 bg-white border-t shadow-lg">
           <Link
-            href="/showcase"
-            className="hover:text-blue-500"
-            onClick={() => setIsOpen(false)}
-          >
-            Showcase
-          </Link>
-          <Link
             href="/"
             className="hover:text-blue-500 cursor-pointer"
             onClick={() => setIsOpen(false)}
@@ -89,18 +79,18 @@ const ShowcaseNavbar = () => {
             Services
           </Link>
           <Link
-            href={"/"}
-            className="hover:text-blue-500 cursor-pointer"
+            href="/automations"
+            className="hover:text-blue-500"
             onClick={() => setIsOpen(false)}
           >
-            Process
+            Automations
           </Link>
           <Link
-            href={"/"}
-            className="hover:text-blue-500 cursor-pointer"
+            href="/blog"
+            className="hover:text-blue-500"
             onClick={() => setIsOpen(false)}
           >
-            Guarantees
+            Blog
           </Link>
 
           <Link

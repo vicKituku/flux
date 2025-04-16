@@ -75,9 +75,6 @@ export default function Home() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex gap-x-8 items-center text-gray-700 font-medium text-lg">
-            <Link href="/showcase" className="hover:text-blue-500">
-              Showcase
-            </Link>
             <ScrollLink
               to="services"
               smooth={true}
@@ -85,20 +82,12 @@ export default function Home() {
             >
               Services
             </ScrollLink>
-            <ScrollLink
-              to="process"
-              smooth={true}
-              className="hover:text-blue-500 cursor-pointer"
-            >
-              Process
-            </ScrollLink>
-            <ScrollLink
-              to="guarantees"
-              smooth={true}
-              className="hover:text-blue-500 cursor-pointer"
-            >
-              Guarantees
-            </ScrollLink>
+            <Link href="/automations" className="hover:text-blue-500">
+              Automations
+            </Link>
+            <Link href="/blog" className="hover:text-blue-500">
+              Blog
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -136,13 +125,6 @@ export default function Home() {
         {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden flex flex-col items-center gap-4 py-4 bg-white border-t shadow-lg">
-            <Link
-              href="/showcase"
-              className="hover:text-blue-500"
-              onClick={() => setIsOpen(false)}
-            >
-              Showcase
-            </Link>
             <ScrollLink
               to="services"
               smooth={true}
@@ -151,22 +133,21 @@ export default function Home() {
             >
               Services
             </ScrollLink>
-            <ScrollLink
-              to="process"
-              smooth={true}
-              className="hover:text-blue-500 cursor-pointer"
+            <Link
+              href="/automations"
+              className="hover:text-blue-500"
               onClick={() => setIsOpen(false)}
             >
-              Process
-            </ScrollLink>
-            <ScrollLink
-              to="guarantees"
-              smooth={true}
-              className="hover:text-blue-500 cursor-pointer"
+              Automations
+            </Link>
+            <Link
+              href="/blog"
+              className="hover:text-blue-500"
               onClick={() => setIsOpen(false)}
             >
-              Guarantees
-            </ScrollLink>
+              Blog
+            </Link>
+
             <a
               href="tel:+254716694890"
               className="text-gray-700 font-medium"
@@ -223,7 +204,7 @@ export default function Home() {
               Book a Call
             </Link>
             <Link
-              href={"/showcase"}
+              href={"/automations"}
               className="
               bg-white
    py-3 
@@ -235,7 +216,7 @@ export default function Home() {
         rounded-[6px]
         hover:shadow-[1px_1px_rgba(0,0,0),2px_2px_rgba(0,0,0),3px_3px_rgba(0,0,0),4px_4px_rgba(0,0,0),5px_5px_0px_0px_rgba(0,0,0)] dark:shadow-[1px_1px_rgba(255,255,255),2px_2px_rgba(255,255,255),3px_3px_rgba(255,255,255),4px_4px_rgba(255,255,255),5px_5px_0px_0px_rgba(255,255,255)]"
             >
-              Showcase
+              Automations
             </Link>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-center text-left md:justify-items-center md:mx-auto mt-10 md:mt-16">

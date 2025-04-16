@@ -12,23 +12,24 @@ async function getPosts() {
 
 export async function ProjectsBlurFadeDemo() {
   const posts: SanityTypes.Post[] = await getPosts();
+
   return (
     <section>
       <div className="grid md:grid-cols-3 gap-8 mt-10 mb-10 justify-items-center">
         {posts.map(({ image, title, description, slug }, key) => (
-          <div key={key}>
+          <div key={key} className="group">
             <BlurFade
               key={title}
               delay={0.25 + key * 0.2}
               inView
               className={`rounded-lg p-4`}
             >
-              <Link href={`/showcase/${slug.current}`}>
+              <Link href={`/blog/${slug.current}`}>
                 <Image
                   height={10000}
                   width={10000}
                   className="
-                h-5/6 w-full object-cover rounded-lg"
+                h-5/6 w-full object-cover rounded-lg group-hover:opacity-80 transition-all"
                   src={urlFor(image).url()}
                   alt={title}
                 />
