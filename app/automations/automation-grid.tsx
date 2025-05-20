@@ -85,7 +85,7 @@ export default function AutomationGrid({
             <div key={automation._id || index} className="group w-full">
               <BlurFade
                 key={title}
-                delay={0.25 + index * 0.2}
+                delay={0.1 + index * 0.05}
                 inView
                 className="rounded-lg p-4 border border-gray-200 transition-all duration-200 bg-white hover:shadow-[2px_2px_rgba(0,0,0),4px_4px_rgba(0,0,0),6px_6px_rgba(0,0,0),8px_8px_rgba(0,0,0),10px_10px_0px_0px_rgba(0,0,0)] h-full flex flex-col"
               >

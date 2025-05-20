@@ -99,7 +99,7 @@ const ShowcaseNavbar = () => {
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile Menu */}
       <div 
         className={`md:hidden fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300 ${
           isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
@@ -107,13 +107,31 @@ const ShowcaseNavbar = () => {
         onClick={() => setIsOpen(false)}
       >
         <div 
-          className={`fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-xl transform transition-transform duration-300 ease-in-out ${
+          className={`fixed inset-y-0 right-0 w-full max-w-sm bg-white/100 shadow-xl transform transition-transform duration-300 ease-in-out ${
             isOpen ? "translate-x-0" : "translate-x-full"
           }`}
           onClick={e => e.stopPropagation()}
         >
           <div className="h-full flex flex-col">
-            <div className="px-4 pt-6 pb-8 space-y-6">
+            <div className="flex items-center justify-between px-4 pt-4">
+              <div className="flex items-center">
+                <Image
+                  src="/logo/fluxauto.png"
+                  alt="FluxAuto Logo"
+                  width={120}
+                  height={35}
+                  className="w-28 h-auto"
+                />
+              </div>
+              <button
+                className="p-2 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200"
+                onClick={() => setIsOpen(false)}
+              >
+                <span className="sr-only">Close menu</span>
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+            <div className="px-4 pt-6 pb-8 space-y-6 bg-white">
               <ScrollLink
                 to="services"
                 spy={true}
