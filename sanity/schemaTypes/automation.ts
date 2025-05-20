@@ -1,5 +1,11 @@
-import { defineField } from "sanity";
-export default {
+import { defineField, defineType } from "sanity";
+
+interface PreviewSelection {
+  title: string;
+  media: any;
+}
+
+export default defineType({
   name: "automation",
   title: "Automation",
   type: "document",
@@ -9,6 +15,14 @@ export default {
       title: "Title",
       description: "This is your automation title",
       type: "string",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "category",
+      title: "Category",
+      type: "reference",
+      to: [{ type: "automationCategory" }],
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "description",
@@ -21,12 +35,14 @@ export default {
       title: "Slug",
       type: "slug",
       options: { source: "title" },
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "image",
       title: "Image",
       type: "image",
       options: { hotspot: true },
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "body",
@@ -41,4 +57,17 @@ export default {
       title: "Author",
     }),
   ],
-};
+  preview: {
+    select: {
+      title: 'title',
+      media: 'image'
+    },
+    prepare(selection: PreviewSelection) {
+      const { title, media } = selection
+      return {
+        title,
+        media
+      }
+    }
+  }
+});

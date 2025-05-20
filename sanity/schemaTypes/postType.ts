@@ -14,6 +14,13 @@ export const postType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'category',
+      title: 'Category',
+      type: 'reference',
+      to: [{ type: 'blogCategory' }],
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: 'description',
       title: 'Description',
       type: 'text',
@@ -51,12 +58,6 @@ export const postType = defineType({
         })
       ],
       validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: 'categories',
-      title: 'Categories',
-      type: 'array',
-      of: [defineArrayMember({type: 'reference', to: {type: 'category'}})],
     }),
     defineField({
       name: 'publishedAt',

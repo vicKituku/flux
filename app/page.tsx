@@ -12,7 +12,7 @@ import LetsMakeThingsHappenSection from "@/components/ui/lets-make-things-happen
 import { IconStarFilled } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PiCheckBold } from "react-icons/pi";
 import { Link as ScrollLink, Element } from "react-scroll";
 import { Menu, X } from "lucide-react";
@@ -20,7 +20,7 @@ import { SiN8N, SiMake, SiZapier, SiOpenai, SiAirtable, SiGooglesheets, SiClaude
 import { FaRobot } from "react-icons/fa";
 import { BsRobot } from "react-icons/bs";
 import { TbBrandVscode } from "react-icons/tb";
-
+import Footer from "@/components/footer";
 const services = [
   {
     icon: "/images/marketing.svg",
@@ -59,111 +59,158 @@ const services = [
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div className="overflow-clip inset-0 -z-10 h-full w-full bg-[#fafafa] bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]">
-      <Element name="top" className="sticky top-0 z-50  bg-white shadow-md  ">
+      <Element name="top" className={`sticky top-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? "bg-white/80 backdrop-blur-md shadow-sm" 
+          : "bg-white/50 backdrop-blur-sm"
+      }`}>
         <div
-          className="xl:w-4/5 
-2xl:w-[68%] mx-auto flex items-center justify-between py-4 px-6 md:px-8"
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         >
-          {/* Logo */}
-          <Link href="/">
-            <Image
-              src="/logo/fluxauto.png"
-              alt="FluxAuto Logo"
-              width={140}
-              height={40}
-              className="w-32"
-            />
-          </Link>
+          <div className="flex items-center justify-between h-20">
+            {/* Logo */}
+            <Link href="/" className="flex-shrink-0 transition-transform hover:scale-105">
+              <Image
+                src="/logo/fluxauto.png"
+                alt="Next Automation Logo"
+                width={140}
+                height={40}
+                className="w-32 h-auto"
+                priority
+              />
+            </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex gap-x-8 items-center text-gray-700 font-medium text-lg">
-            <ScrollLink
-              to="services-separator"
-              smooth={true}
-              duration={500}
-              className="hover:text-blue-500 cursor-pointer"
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center gap-10">
+              <ScrollLink
+                to="services"
+                spy={true}
+                smooth={true}
+                offset={-100}
+                duration={500}
+                className="text-base font-medium transition-all duration-200 text-gray-700 hover:text-blue-600 cursor-pointer"
+              >
+                Services
+              </ScrollLink>
+              <Link 
+                href="/automations" 
+                className="text-base font-medium transition-all duration-200 text-gray-700 hover:text-blue-600"
+              >
+                Automations
+              </Link>
+              <Link 
+                href="/blog" 
+                className="text-base font-medium transition-all duration-200 text-gray-700 hover:text-blue-600"
+              >
+                Blog
+              </Link>
+            </nav>
+
+            {/* Mobile Menu Button */}
+            <button 
+              className="md:hidden inline-flex items-center justify-center p-2 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200"
+              onClick={() => setIsOpen(!isOpen)}
             >
-              Services
-            </ScrollLink>
-            <Link href="/automations" className="hover:text-blue-500">
-              Automations
-            </Link>
-            <Link href="/blog" className="hover:text-blue-500">
-              Blog
-            </Link>
-          </div>
+              <span className="sr-only">Open main menu</span>
+              {isOpen ? <X className="block h-6 w-6" /> : <Menu className="block h-6 w-6" />}
+            </button>
 
-          {/* Mobile Menu Button */}
-          <button className="md:hidden py-4" onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
-
-          {/* Call & Book Button (Desktop) */}
-          <div className=" hidden md:flex items-center gap-x-4">
-            {/* <a href="tel:+254716694890">
-              <button className="px-4 py-2 rounded-md flex items-center gap-x-3 border border-gray-300 hover:bg-gray-200">
-                +254 716 694 890
-              </button>
-            </a> */}
-            <Link
-              href={"/meeting"}
-              className="py-3 px-6
-      text-lg
-      hover:bg-[#abcbff] 
-      rounded-[6px]
-      border-2 
-      border-black 
-      dark:border-white 
-           bg-[#121212] 
-       text-white 
-       transition 
-       duration-200 
-       hover:shadow-[1px_1px_rgba(0,0,0),2px_2px_rgba(0,0,0),3px_3px_rgba(0,0,0),4px_4px_rgba(0,0,0),5px_5px_0px_0px_rgba(0,0,0)] dark:shadow-[1px_1px_rgba(255,255,255),2px_2px_rgba(255,255,255),3px_3px_rgba(255,255,255),4px_4px_rgba(255,255,255),5px_5px_0px_0px_rgba(255,255,255)] "
-            >
-              Book a call
-            </Link>
+            {/* Desktop CTA */}
+            <div className="hidden md:flex items-center">
+              <Link
+                href="/meeting"
+                className="inline-flex items-center justify-center px-6 py-2.5 text-base font-medium text-white bg-black rounded-lg border-2 border-black hover:bg-blue-600 hover:border-blue-600 hover:scale-105 transition-all duration-300 whitespace-nowrap shadow-sm hover:shadow-md"
+              >
+                Book a call
+              </Link>
+            </div>
           </div>
         </div>
 
         {/* Mobile Menu */}
-        {isOpen && (
-          <div className="md:hidden flex flex-col items-center gap-6 py-6 bg-white border-t shadow-lg animate-in slide-in-from-top duration-300">
-            <ScrollLink
-              to="services-separator"
-              smooth={true}
-              className="text-lg font-medium hover:text-blue-500 cursor-pointer transition-colors duration-200"
-              onClick={() => setIsOpen(false)}
-            >
-              Services
-            </ScrollLink>
-            <Link
-              href="/automations"
-              className="text-lg font-medium hover:text-blue-500 transition-colors duration-200"
-              onClick={() => setIsOpen(false)}
-            >
-              Automations
-            </Link>
-            <Link
-              href="/blog"
-              className="text-lg font-medium hover:text-blue-500 transition-colors duration-200"
-              onClick={() => setIsOpen(false)}
-            >
-              Blog
-            </Link>
-
-            <div className="w-full px-6 pt-4 border-t border-gray-100">
-              <Link
-                href="/meeting"
-                className="w-full py-3.5 px-8 bg-black text-white rounded-[8px] border-2 border-black dark:border-white transition duration-200 text-lg hover:bg-gray-800 hover:shadow-[2px_2px_rgba(0,0,0),4px_4px_rgba(0,0,0),6px_6px_rgba(0,0,0),8px_8px_rgba(0,0,0),10px_10px_0px_0px_rgba(0,0,0)] dark:shadow-[2px_2px_rgba(255,255,255),4px_4px_rgba(255,255,255),6px_6px_rgba(255,255,255),8px_8px_rgba(255,255,255),10px_10px_0px_0px_rgba(255,255,255)] flex items-center justify-center"
-                onClick={() => setIsOpen(false)}
-              >
-                Book a Call
-              </Link>
+        <div 
+          className={`md:hidden fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300 ${
+            isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          }`}
+          onClick={() => setIsOpen(false)}
+        >
+          <div 
+            className={`fixed inset-y-0 right-0 w-full max-w-sm bg-white/100 shadow-xl transform transition-transform duration-300 ease-in-out ${
+              isOpen ? "translate-x-0" : "translate-x-full"
+            }`}
+            onClick={e => e.stopPropagation()}
+          >
+            <div className="h-full flex flex-col">
+              <div className="flex items-center justify-between px-4 pt-4">
+                <div className="flex items-center">
+                  <Image
+                    src="/logo/fluxauto.png"
+                    alt="FluxAuto Logo"
+                    width={120}
+                    height={35}
+                    className="w-28 h-auto"
+                  />
+                </div>
+                <button
+                  className="p-2 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <span className="sr-only">Close menu</span>
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
+              <div className="px-4 pt-6 pb-8 space-y-6 bg-white">
+                <ScrollLink
+                  to="services"
+                  spy={true}
+                  smooth={true}
+                  offset={-100}
+                  duration={500}
+                  className="block py-3 text-lg font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200 cursor-pointer"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Services
+                </ScrollLink>
+                <Link
+                  href="/automations"
+                  className="block py-3 text-lg font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Automations
+                </Link>
+                <Link
+                  href="/blog"
+                  className="block py-3 text-lg font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Blog
+                </Link>
+                <div className="pt-6">
+                  <Link
+                    href="/meeting"
+                    className="w-full inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-black rounded-lg border-2 border-black hover:bg-blue-600 hover:border-blue-600 transition-all duration-300 shadow-sm hover:shadow-md"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Book a Call
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
-        )}
+        </div>
       </Element>
       <main className="md:pb-20">
         <div className="md:px-0 mx-6 xl:w-4/5 2xl:w-[68%] md:mx-auto mt-20">
@@ -313,27 +360,43 @@ export default function Home() {
             Custom AI and automation solutions designed to streamline your
             business and maximize productivity
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-10">
-            {services.map((service) => (
-              <div
-                key={service.title}
-                className="flex flex-col justify-between h-full space-y-4 text-center bg-gray-100 p-4 cursor-pointer hover:scale-105 transition-transform rounded-md"
+          
+          <div className="grid md:grid-cols-3 gap-8 mt-16">
+            {services.map((service, index) => (
+              <div 
+                key={index}
+                className="group relative bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
               >
-                <Image
-                  src={service.icon}
-                  width={1000}
-                  height={1000}
-                  className="object-contain bg-gray-100 p-4 w-full h-40 rounded-md"
-                  alt={"image"}
-                />
-                <h1 className="text-xl font-medium">{service.title}</h1>
-                <ul className="text-gray-500 space-y-2">
-                  {service.description.map((desc, index) => (
-                    <li key={index} className="flex items-start space-x-2">
-                      <span>{desc}</span>
+                {/* Service Icon */}
+                <div className="mb-6">
+                  <Image
+                    src={service.icon}
+                    alt={service.title}
+                    width={48}
+                    height={48}
+                    className="w-12 h-12"
+                  />
+                </div>
+
+                {/* Service Title */}
+                <h3 className="text-xl font-semibold mb-4 text-gray-900 group-hover:text-blue-600 transition-colors duration-200">
+                  {service.title}
+                </h3>
+
+                {/* Service Features */}
+                <ul className="space-y-3">
+                  {service.description.map((feature, featureIndex) => (
+                    <li 
+                      key={featureIndex}
+                      className="flex items-start gap-2 text-gray-600"
+                    >
+                      <span className="text-base">{feature}</span>
                     </li>
                   ))}
                 </ul>
+
+                {/* Hover Effect Gradient Border */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
               </div>
             ))}
           </div>
@@ -391,7 +454,7 @@ export default function Home() {
           />
           <div className="flex flex-col gap-y-5 md:w-1/2">
             <h1 className="text-lg md:text-2xl text-gray-500">
-              &quot;We&apos;ve been working with Flux Auto for over 7 months and
+              &quot;We&apos;ve been working with Next Automations for over 7 months and
               they&apos;ve been amazing to work with. They&apos;ve helped us
               grow our business and we couldn&apos;t be happier with the
               results. &quot;
@@ -417,32 +480,7 @@ export default function Home() {
       <section className="my-20 md:py-32 xl:w-4/5 2xl:w-[68%] mx-auto">
         <LetsMakeThingsHappenSection />
       </section>
-      <footer className="bg-[#fafafa] py-20 px-6 md:px-0 md:mx-auto border-t">
-        <div className="flex flex-col  justify-between gap-y-3 xl:w-4/5 2xl:w-[68%] mx-auto">
-          <h1 className="text-3xl md:text-5xl font-medium ">
-            <Image
-              src={"/logo/fluxauto.png"}
-              width={10000}
-              height={10000}
-              className="w-40"
-              alt="image"
-            />{" "}
-          </h1>
-          <p className="text-left  text-xl  text-gray-500">
-            <a href="tel:+254716694890">+254716694890</a>
-          </p>
-          <p className="text-left  text-xl  text-gray-500">
-            victorkituku@gmail.com
-          </p>
-        </div>
-
-        <div className="flex md:justify-center gap-x-4 mt-10">
-          © 2025 Bird. All Rights Reserved.
-          <Link href="/" className="text-blue-500">
-            Privacy Policy
-          </Link>
-        </div>
-      </footer>
+      <Footer/>
     </div>
   );
 }

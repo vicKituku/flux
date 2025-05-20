@@ -1,0 +1,5 @@
+*[_type == "category"] {
+  _id,
+  title,
+  slug
+} 

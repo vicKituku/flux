@@ -2,137 +2,164 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
-
-const services = [
-  {
-    icon: "/images/marketing.svg",
-    title: "Marketing Automation",
-  },
-  {
-    icon: "/images/no-code.svg",
-    title: "No-Code & Low-Code Automation",
-  },
-  {
-    icon: "/images/chatbot.svg",
-    title: "AI Chatbots & Virtual Assistants",
-  },
-];
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import { Link as ScrollLink } from "react-scroll";
 
 const ShowcaseNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const isActive = (path: string) => {
+    return pathname === path;
+  };
+
   return (
-    <div className="sticky top-0 z-50 bg-white shadow-md  mx-auto">
-      <div
-        className="xl:w-4/5 
-2xl:w-[68%] mx-auto flex items-center justify-between py-4 px-6 md:px-8"
-      >
-        {/* Logo */}
-        <Link href="/">
-          <Image
-            src="/logo/fluxauto.png"
-            alt="FluxAuto Logo"
-            width={140}
-            height={40}
-            className="w-32"
-          />
-        </Link>
-
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex gap-x-8 items-center text-gray-700 font-medium text-lg">
-          <Link href={"/"} className="hover:text-blue-500 cursor-pointer">
-            Services
+    <div className={`sticky top-0 z-50 transition-all duration-300 ${
+      isScrolled 
+        ? "bg-white/80 backdrop-blur-md shadow-sm" 
+        : "bg-white/50 backdrop-blur-sm"
+    }`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo */}
+          <Link href="/" className="flex-shrink-0 transition-transform hover:scale-105">
+            <Image
+              src="/logo/fluxauto.png"
+              alt="FluxAuto Logo"
+              width={140}
+              height={40}
+              className="w-32 h-auto"
+              priority
+            />
           </Link>
-          <Link href="/automations" className="hover:text-blue-500">
-            Automations
-          </Link>
-          <Link href="/blog" className="hover:text-blue-500">
-            Blog
-          </Link>
-        </div>
 
-        {/* Mobile Menu Button */}
-        <button className="md:hidden py-4" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-10">
+            <ScrollLink 
+              to="services"
+              spy={true}
+              smooth={true}
+              offset={-100}
+              duration={500}
+              className="text-base font-medium transition-all duration-200 text-gray-700 hover:text-blue-600 cursor-pointer"
+            >
+              Services
+            </ScrollLink>
+            <Link 
+              href="/automations" 
+              className={`text-base font-medium transition-all duration-200 ${
+                isActive("/automations")
+                  ? "text-blue-600"
+                  : "text-gray-700 hover:text-blue-600"
+              }`}
+            >
+              Automations
+            </Link>
+            <Link 
+              href="/blog" 
+              className={`text-base font-medium transition-all duration-200 ${
+                isActive("/blog")
+                  ? "text-blue-600"
+                  : "text-gray-700 hover:text-blue-600"
+              }`}
+            >
+              Blog
+            </Link>
+          </nav>
 
-        {/* Call & Book Button (Desktop) */}
-        <div className=" hidden md:flex items-center gap-x-4">
-          {/* <a href="tel:+254716694890">
-                  <button className="px-4 py-2 rounded-md flex items-center gap-x-3 border border-gray-300 hover:bg-gray-200">
-                    +254 716 694 890
-                  </button>
-                </a> */}
-          <Link
-            href={"/meeting"}
-            className="py-3.5 px-8
-          text-lg
-          hover:bg-[#abcbff] 
-          rounded-[8px]
-          border-2 
-          border-black 
-          dark:border-white 
-               bg-[#121212] 
-           text-white 
-           transition 
-           duration-200 
-           hover:shadow-[2px_2px_rgba(0,0,0),4px_4px_rgba(0,0,0),6px_6px_rgba(0,0,0),8px_8px_rgba(0,0,0),10px_10px_0px_0px_rgba(0,0,0)] dark:shadow-[2px_2px_rgba(255,255,255),4px_4px_rgba(255,255,255),6px_6px_rgba(255,255,255),8px_8px_rgba(255,255,255),10px_10px_0px_0px_rgba(255,255,255)] "
+          {/* Desktop CTA */}
+          <div className="hidden md:flex items-center">
+            <Link
+              href="/meeting"
+              className="inline-flex items-center justify-center px-6 py-2.5 text-base font-medium text-white bg-black rounded-lg border-2 border-black hover:bg-blue-600 hover:border-blue-600 hover:scale-105 transition-all duration-300 whitespace-nowrap shadow-sm hover:shadow-md"
+            >
+              Book a call
+            </Link>
+          </div>
+
+          {/* Mobile menu button */}
+          <button 
+            className="md:hidden inline-flex items-center justify-center p-2 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200"
+            onClick={() => setIsOpen(!isOpen)}
           >
-            Book a call
-          </Link>
+            <span className="sr-only">Open main menu</span>
+            {isOpen ? <X className="block h-6 w-6" /> : <Menu className="block h-6 w-6" />}
+          </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden flex flex-col items-center gap-6 py-6 bg-white border-t shadow-lg animate-in slide-in-from-top duration-300">
-          <Link
-            href="/"
-            className="text-lg font-medium hover:text-blue-500 cursor-pointer transition-colors duration-200"
-            onClick={() => setIsOpen(false)}
-          >
-            Services
-          </Link>
-          <Link
-            href="/automations"
-            className="text-lg font-medium hover:text-blue-500 transition-colors duration-200"
-            onClick={() => setIsOpen(false)}
-          >
-            Automations
-          </Link>
-          <Link
-            href="/blog"
-            className="text-lg font-medium hover:text-blue-500 transition-colors duration-200"
-            onClick={() => setIsOpen(false)}
-          >
-            Blog
-          </Link>
-
-          <div className="w-full px-6 pt-4 border-t border-gray-100">
-            <div className="grid grid-cols-1 gap-4 mb-4">
-              {services.map((service, index) => (
-                <div key={index} className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200">
-                  <Image
-                    src={service.icon}
-                    width={24}
-                    height={24}
-                    alt={service.title}
-                    className="w-6 h-6"
-                  />
-                  <span className="text-gray-700 font-medium">{service.title}</span>
-                </div>
-              ))}
+      {/* Mobile menu */}
+      <div 
+        className={`md:hidden fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300 ${
+          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={() => setIsOpen(false)}
+      >
+        <div 
+          className={`fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-xl transform transition-transform duration-300 ease-in-out ${
+            isOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+          onClick={e => e.stopPropagation()}
+        >
+          <div className="h-full flex flex-col">
+            <div className="px-4 pt-6 pb-8 space-y-6">
+              <ScrollLink
+                to="services"
+                spy={true}
+                smooth={true}
+                offset={-100}
+                duration={500}
+                className="block py-3 text-lg font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200 cursor-pointer"
+                onClick={() => setIsOpen(false)}
+              >
+                Services
+              </ScrollLink>
+              <Link
+                href="/automations"
+                className={`block py-3 text-lg font-medium transition-colors duration-200 ${
+                  isActive("/automations")
+                    ? "text-blue-600"
+                    : "text-gray-700 hover:text-blue-600"
+                }`}
+                onClick={() => setIsOpen(false)}
+              >
+                Automations
+              </Link>
+              <Link
+                href="/blog"
+                className={`block py-3 text-lg font-medium transition-colors duration-200 ${
+                  isActive("/blog")
+                    ? "text-blue-600"
+                    : "text-gray-700 hover:text-blue-600"
+                }`}
+                onClick={() => setIsOpen(false)}
+              >
+                Blog
+              </Link>
+              <div className="pt-6">
+                <Link
+                  href="/meeting"
+                  className="w-full inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-black rounded-lg border-2 border-black hover:bg-blue-600 hover:border-blue-600 transition-all duration-300 shadow-sm hover:shadow-md"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Book a Call
+                </Link>
+              </div>
             </div>
-            <Link
-              href="/meeting"
-              className="w-full py-3.5 px-8 bg-black text-white rounded-[8px] border-2 border-black dark:border-white transition duration-200 text-lg hover:bg-gray-800 hover:shadow-[2px_2px_rgba(0,0,0),4px_4px_rgba(0,0,0),6px_6px_rgba(0,0,0),8px_8px_rgba(0,0,0),10px_10px_0px_0px_rgba(0,0,0)] dark:shadow-[2px_2px_rgba(255,255,255),4px_4px_rgba(255,255,255),6px_6px_rgba(255,255,255),8px_8px_rgba(255,255,255),10px_10px_0px_0px_rgba(255,255,255)] flex items-center justify-center"
-              onClick={() => setIsOpen(false)}
-            >
-              Book a Call
-            </Link>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };
