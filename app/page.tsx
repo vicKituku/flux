@@ -228,40 +228,67 @@ export default function Home() {
                  flex 
                   md:justify-center 
                   items-center 
-                  gap-x-6
+                  gap-x-4
+                  md:gap-x-6
                    "
           >
             <Link
               href="/meeting"
-              className="py-3.5 
-            px-8
-            md:px-12
-      md:text-lg
-      hover:bg-[#abcbff] 
-      rounded-[8px]
-      border-2 
-      border-black 
-      dark:border-white 
-       bg-[#121212] 
-       text-white 
-       transition 
-       duration-200 
-       hover:shadow-[2px_2px_rgba(0,0,0),4px_4px_rgba(0,0,0),6px_6px_rgba(0,0,0),8px_8px_rgba(0,0,0),10px_10px_0px_0px_rgba(0,0,0)] dark:shadow-[2px_2px_rgba(255,255,255),4px_4px_rgba(255,255,255),6px_6px_rgba(255,255,255),8px_8px_rgba(255,255,255),10px_10px_0px_0px_rgba(255,255,255)] "
+              className="
+                inline-flex 
+                items-center 
+                justify-center 
+                px-5
+                md:px-8 
+                py-3 
+                text-base
+                md:text-lg
+                font-medium 
+                text-white 
+                bg-black 
+                rounded-lg 
+                border-2 
+                border-black 
+                hover:bg-blue-600 
+                hover:border-blue-600 
+                hover:scale-105 
+                transition-all 
+                duration-300 
+                whitespace-nowrap 
+                shadow-sm 
+                hover:shadow-md
+                min-w-[140px]
+                md:min-w-[160px]
+              "
             >
               Book a Call
             </Link>
             <Link
               href={"/automations"}
               className="
-              bg-white
-   py-3.5 
-   px-8
-   md:px-12
-      md:text-lg
-        border-2
-        border-black
-        rounded-[8px]
-        hover:shadow-[2px_2px_rgba(0,0,0),4px_4px_rgba(0,0,0),6px_6px_rgba(0,0,0),8px_8px_rgba(0,0,0),10px_10px_0px_0px_rgba(0,0,0)] dark:shadow-[2px_2px_rgba(255,255,255),4px_4px_rgba(255,255,255),6px_6px_rgba(255,255,255),8px_8px_rgba(255,255,255),10px_10px_0px_0px_rgba(255,255,255)]"
+                inline-flex 
+                items-center 
+                justify-center 
+                px-5
+                md:px-8 
+                py-3 
+                text-base
+                md:text-lg
+                font-medium 
+                bg-white
+                text-black
+                rounded-lg 
+                border-2 
+                border-black 
+                hover:bg-gray-50
+                hover:scale-105 
+                transition-all 
+                duration-300 
+                shadow-sm 
+                hover:shadow-md
+                min-w-[140px]
+                md:min-w-[160px]
+              "
             >
               Automations
             </Link>
