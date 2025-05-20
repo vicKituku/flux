@@ -4,6 +4,21 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
+const services = [
+  {
+    icon: "/images/marketing.svg",
+    title: "Marketing Automation",
+  },
+  {
+    icon: "/images/no-code.svg",
+    title: "No-Code & Low-Code Automation",
+  },
+  {
+    icon: "/images/chatbot.svg",
+    title: "AI Chatbots & Virtual Assistants",
+  },
+];
+
 const ShowcaseNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -50,10 +65,10 @@ const ShowcaseNavbar = () => {
                 </a> */}
           <Link
             href={"/meeting"}
-            className="py-3 px-6
+            className="py-3.5 px-8
           text-lg
           hover:bg-[#abcbff] 
-          rounded-[6px]
+          rounded-[8px]
           border-2 
           border-black 
           dark:border-white 
@@ -61,7 +76,7 @@ const ShowcaseNavbar = () => {
            text-white 
            transition 
            duration-200 
-           hover:shadow-[1px_1px_rgba(0,0,0),2px_2px_rgba(0,0,0),3px_3px_rgba(0,0,0),4px_4px_rgba(0,0,0),5px_5px_0px_0px_rgba(0,0,0)] dark:shadow-[1px_1px_rgba(255,255,255),2px_2px_rgba(255,255,255),3px_3px_rgba(255,255,255),4px_4px_rgba(255,255,255),5px_5px_0px_0px_rgba(255,255,255)] "
+           hover:shadow-[2px_2px_rgba(0,0,0),4px_4px_rgba(0,0,0),6px_6px_rgba(0,0,0),8px_8px_rgba(0,0,0),10px_10px_0px_0px_rgba(0,0,0)] dark:shadow-[2px_2px_rgba(255,255,255),4px_4px_rgba(255,255,255),6px_6px_rgba(255,255,255),8px_8px_rgba(255,255,255),10px_10px_0px_0px_rgba(255,255,255)] "
           >
             Book a call
           </Link>
@@ -70,36 +85,52 @@ const ShowcaseNavbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden flex flex-col items-center gap-4 py-4 bg-white border-t shadow-lg">
+        <div className="md:hidden flex flex-col items-center gap-6 py-6 bg-white border-t shadow-lg animate-in slide-in-from-top duration-300">
           <Link
             href="/"
-            className="hover:text-blue-500 cursor-pointer"
+            className="text-lg font-medium hover:text-blue-500 cursor-pointer transition-colors duration-200"
             onClick={() => setIsOpen(false)}
           >
             Services
           </Link>
           <Link
             href="/automations"
-            className="hover:text-blue-500"
+            className="text-lg font-medium hover:text-blue-500 transition-colors duration-200"
             onClick={() => setIsOpen(false)}
           >
             Automations
           </Link>
           <Link
             href="/blog"
-            className="hover:text-blue-500"
+            className="text-lg font-medium hover:text-blue-500 transition-colors duration-200"
             onClick={() => setIsOpen(false)}
           >
             Blog
           </Link>
 
-          <Link
-            href="/meeting"
-            className="px-4 py-2 bg-black text-white rounded-sm border border-black dark:border-white transition duration-200 text-lg hover:bg-gray-800"
-            onClick={() => setIsOpen(false)}
-          >
-            Book a Call
-          </Link>
+          <div className="w-full px-6 pt-4 border-t border-gray-100">
+            <div className="grid grid-cols-1 gap-4 mb-4">
+              {services.map((service, index) => (
+                <div key={index} className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                  <Image
+                    src={service.icon}
+                    width={24}
+                    height={24}
+                    alt={service.title}
+                    className="w-6 h-6"
+                  />
+                  <span className="text-gray-700 font-medium">{service.title}</span>
+                </div>
+              ))}
+            </div>
+            <Link
+              href="/meeting"
+              className="w-full py-3.5 px-8 bg-black text-white rounded-[8px] border-2 border-black dark:border-white transition duration-200 text-lg hover:bg-gray-800 hover:shadow-[2px_2px_rgba(0,0,0),4px_4px_rgba(0,0,0),6px_6px_rgba(0,0,0),8px_8px_rgba(0,0,0),10px_10px_0px_0px_rgba(0,0,0)] dark:shadow-[2px_2px_rgba(255,255,255),4px_4px_rgba(255,255,255),6px_6px_rgba(255,255,255),8px_8px_rgba(255,255,255),10px_10px_0px_0px_rgba(255,255,255)] flex items-center justify-center"
+              onClick={() => setIsOpen(false)}
+            >
+              Book a Call
+            </Link>
+          </div>
         </div>
       )}
     </div>

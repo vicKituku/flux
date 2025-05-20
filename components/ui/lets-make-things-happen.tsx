@@ -20,13 +20,12 @@ function LetsMakeThingsHappenSection() {
 
         <Link
           href="/meeting"
-          className="py-3 
-            px-10
-        
-            md:px-16
-      md:text-xl
+          className="py-3.5 
+            px-8
+            md:px-12
+      md:text-lg
       hover:bg-[#abcbff] 
-      rounded-[6px]
+      rounded-[8px]
       border-2 
       border-black 
       dark:border-white 
@@ -34,7 +33,7 @@ function LetsMakeThingsHappenSection() {
        text-white 
        transition 
        duration-200 
-       hover:shadow-[1px_1px_rgba(0,0,0),2px_2px_rgba(0,0,0),3px_3px_rgba(0,0,0),4px_4px_rgba(0,0,0),5px_5px_0px_0px_rgba(0,0,0)] dark:shadow-[1px_1px_rgba(255,255,255),2px_2px_rgba(255,255,255),3px_3px_rgba(255,255,255),4px_4px_rgba(255,255,255),5px_5px_0px_0px_rgba(255,255,255)] "
+       hover:shadow-[2px_2px_rgba(0,0,0),4px_4px_rgba(0,0,0),6px_6px_rgba(0,0,0),8px_8px_rgba(0,0,0),10px_10px_0px_0px_rgba(0,0,0)] dark:shadow-[2px_2px_rgba(255,255,255),4px_4px_rgba(255,255,255),6px_6px_rgba(255,255,255),8px_8px_rgba(255,255,255),10px_10px_0px_0px_rgba(255,255,255)] "
         >
           Book a Call
         </Link>

@@ -2,7 +2,6 @@
 
 import { cn } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 
 export const InfiniteMovingLogos = ({
   items,
@@ -12,7 +11,7 @@ export const InfiniteMovingLogos = ({
   className,
 }: {
   items: {
-    logo: string;
+    icon: React.ReactNode;
     name: string;
     height: number;
   }[];
@@ -80,21 +79,16 @@ export const InfiniteMovingLogos = ({
         {items.map((item) => (
           <li
             key={item.name}
-            className="flex items-center flex-shrink-0 px-8"
+            className="flex flex-col items-center flex-shrink-0 px-8 gap-2"
             style={{
               background:
                 "linear-gradient(180deg, var(--slate-800), var(--slate-900))",
             }}
           >
-            <div>
-              <Image
-                src={item.logo}
-                alt={item.name}
-                width={160}
-                height={160}
-                className="w-auto md:w-auto max-h-20"
-              />
+            <div className="flex items-center justify-center">
+              {item.icon}
             </div>
+            <span className="text-sm text-gray-600 font-medium">{item.name}</span>
           </li>
         ))}
       </ul>

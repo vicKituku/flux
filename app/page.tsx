@@ -16,6 +16,10 @@ import { useState } from "react";
 import { PiCheckBold } from "react-icons/pi";
 import { Link as ScrollLink, Element } from "react-scroll";
 import { Menu, X } from "lucide-react";
+import { SiN8N, SiMake, SiZapier, SiOpenai, SiAirtable, SiGooglesheets, SiClaude } from "react-icons/si";
+import { FaRobot } from "react-icons/fa";
+import { BsRobot } from "react-icons/bs";
+import { TbBrandVscode } from "react-icons/tb";
 
 const services = [
   {
@@ -76,8 +80,9 @@ export default function Home() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex gap-x-8 items-center text-gray-700 font-medium text-lg">
             <ScrollLink
-              to="services"
+              to="services-separator"
               smooth={true}
+              duration={500}
               className="hover:text-blue-500 cursor-pointer"
             >
               Services
@@ -124,49 +129,44 @@ export default function Home() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden flex flex-col items-center gap-4 py-4 bg-white border-t shadow-lg">
+          <div className="md:hidden flex flex-col items-center gap-6 py-6 bg-white border-t shadow-lg animate-in slide-in-from-top duration-300">
             <ScrollLink
-              to="services"
+              to="services-separator"
               smooth={true}
-              className="hover:text-blue-500 cursor-pointer"
+              className="text-lg font-medium hover:text-blue-500 cursor-pointer transition-colors duration-200"
               onClick={() => setIsOpen(false)}
             >
               Services
             </ScrollLink>
             <Link
               href="/automations"
-              className="hover:text-blue-500"
+              className="text-lg font-medium hover:text-blue-500 transition-colors duration-200"
               onClick={() => setIsOpen(false)}
             >
               Automations
             </Link>
             <Link
               href="/blog"
-              className="hover:text-blue-500"
+              className="text-lg font-medium hover:text-blue-500 transition-colors duration-200"
               onClick={() => setIsOpen(false)}
             >
               Blog
             </Link>
 
-            <a
-              href="tel:+254716694890"
-              className="text-gray-700 font-medium"
-              onClick={() => setIsOpen(false)}
-            >
-              +254 716 694 890
-            </a>
-            <Link
-              href="/meeting"
-              className="px-4 py-2 bg-black text-white rounded-sm border border-black dark:border-white transition duration-200 text-lg hover:bg-gray-800"
-              onClick={() => setIsOpen(false)}
-            >
-              Book a Call
-            </Link>
+            <div className="w-full px-6 pt-4 border-t border-gray-100">
+              <Link
+                href="/meeting"
+                className="w-full py-3.5 px-8 bg-black text-white rounded-[8px] border-2 border-black dark:border-white transition duration-200 text-lg hover:bg-gray-800 hover:shadow-[2px_2px_rgba(0,0,0),4px_4px_rgba(0,0,0),6px_6px_rgba(0,0,0),8px_8px_rgba(0,0,0),10px_10px_0px_0px_rgba(0,0,0)] dark:shadow-[2px_2px_rgba(255,255,255),4px_4px_rgba(255,255,255),6px_6px_rgba(255,255,255),8px_8px_rgba(255,255,255),10px_10px_0px_0px_rgba(255,255,255)] flex items-center justify-center"
+                onClick={() => setIsOpen(false)}
+              >
+                Book a Call
+              </Link>
+            </div>
           </div>
         )}
       </Element>
-      <main className="md:pb-10">
-        <div className="md:px-0 mx-6 xl:w-4/5 2xl:w-[68%] md:mx-auto mt-14">
+      <main className="md:pb-20">
+        <div className="md:px-0 mx-6 xl:w-4/5 2xl:w-[68%] md:mx-auto mt-20">
           <AnimatedShinyTextDemo />
 
           <h1>
@@ -181,17 +181,17 @@ export default function Home() {
                  flex 
                   md:justify-center 
                   items-center 
-                  gap-x-4
+                  gap-x-6
                    "
           >
             <Link
               href="/meeting"
-              className="py-3 
+              className="py-3.5 
             px-8
-            md:px-16
-      md:text-xl
+            md:px-12
+      md:text-lg
       hover:bg-[#abcbff] 
-      rounded-[6px]
+      rounded-[8px]
       border-2 
       border-black 
       dark:border-white 
@@ -199,7 +199,7 @@ export default function Home() {
        text-white 
        transition 
        duration-200 
-       hover:shadow-[1px_1px_rgba(0,0,0),2px_2px_rgba(0,0,0),3px_3px_rgba(0,0,0),4px_4px_rgba(0,0,0),5px_5px_0px_0px_rgba(0,0,0)] dark:shadow-[1px_1px_rgba(255,255,255),2px_2px_rgba(255,255,255),3px_3px_rgba(255,255,255),4px_4px_rgba(255,255,255),5px_5px_0px_0px_rgba(255,255,255)] "
+       hover:shadow-[2px_2px_rgba(0,0,0),4px_4px_rgba(0,0,0),6px_6px_rgba(0,0,0),8px_8px_rgba(0,0,0),10px_10px_0px_0px_rgba(0,0,0)] dark:shadow-[2px_2px_rgba(255,255,255),4px_4px_rgba(255,255,255),6px_6px_rgba(255,255,255),8px_8px_rgba(255,255,255),10px_10px_0px_0px_rgba(255,255,255)] "
             >
               Book a Call
             </Link>
@@ -207,48 +207,23 @@ export default function Home() {
               href={"/automations"}
               className="
               bg-white
-   py-3 
-   px-10
-   md:px-16
-      md:text-xl
-        border-4
+   py-3.5 
+   px-8
+   md:px-12
+      md:text-lg
+        border-2
         border-black
-        rounded-[6px]
-        hover:shadow-[1px_1px_rgba(0,0,0),2px_2px_rgba(0,0,0),3px_3px_rgba(0,0,0),4px_4px_rgba(0,0,0),5px_5px_0px_0px_rgba(0,0,0)] dark:shadow-[1px_1px_rgba(255,255,255),2px_2px_rgba(255,255,255),3px_3px_rgba(255,255,255),4px_4px_rgba(255,255,255),5px_5px_0px_0px_rgba(255,255,255)]"
+        rounded-[8px]
+        hover:shadow-[2px_2px_rgba(0,0,0),4px_4px_rgba(0,0,0),6px_6px_rgba(0,0,0),8px_8px_rgba(0,0,0),10px_10px_0px_0px_rgba(0,0,0)] dark:shadow-[2px_2px_rgba(255,255,255),4px_4px_rgba(255,255,255),6px_6px_rgba(255,255,255),8px_8px_rgba(255,255,255),10px_10px_0px_0px_rgba(255,255,255)]"
             >
               Automations
             </Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-center text-left md:justify-items-center md:mx-auto mt-10 md:mt-16">
-            <BoxReveal boxColor={"#3b82f6"} duration={0.5}>
-              <p className="md:text-xl font-semibold flex gap-x-2 md:gap-x-4 items-center">
-                <PiCheckBold className="text-xl text-blue-500" />
-                AI-Powered Workflows
-              </p>
-            </BoxReveal>
-            <BoxReveal boxColor={"#3b82f6"} duration={0.5}>
-              <p className="md:text-xl font-semibold flex gap-x-2 md:gap-x-4 items-center">
-                <PiCheckBold className="text-xl text-blue-500" />
-                Smart Systems
-              </p>
-            </BoxReveal>
-            <BoxReveal boxColor={"#3b82f6"} duration={0.5}>
-              <p className="md:text-xl font-semibold flex gap-x-2 md:gap-x-4 items-center">
-                <PiCheckBold className="text-xl text-blue-500" />
-                Automated Growth
-              </p>
-            </BoxReveal>
-            <BoxReveal boxColor={"#3b82f6"} duration={0.5}>
-              <p className="md:text-xl font-semibold flex gap-x-2 md:gap-x-4 items-center">
-                <PiCheckBold className="text-xl text-blue-500" />
-                Intelligent Strategy
-              </p>
-            </BoxReveal>
-          </div>
-          <div className="md:flex items-center justify-between gap-y-4 my-10 gap-x-28 mx-auto">
+        
+          <div className="md:flex items-center justify-between gap-y-4 my-20 gap-x-28 mx-auto">
             <div className="md:w-2/5">
               <h1 className="text-2xl font-medium text-gray-600 w-4/5">
-                Trusted by fast moving brands world wide
+                Tools and platforms we work with
               </h1>
               <div className="flex my-6 gap-x-5 w-full">
                 <div>
@@ -275,23 +250,64 @@ export default function Home() {
                 speed="normal"
                 direction="right"
                 items={[
-                  {
-                    logo: "/logos/theintimateinstinct.jpeg",
-                    name: "The intimate instinct",
-                    height: 10,
+                  { 
+                    icon: <SiN8N className="w-10 h-10 text-blue-600" />,
+                    name: "n8n",
+                    height: 40 
                   },
-                  { logo: "/logo/fluxauto.png", name: "Logo2", height: 160 },
+                  { 
+                    icon: <SiMake className="w-10 h-10 text-blue-600" />,
+                    name: "Make.com",
+                    height: 40 
+                  },
+                  { 
+                    icon: <Image src="/logos/ghl.png" alt="Go High Level" width={40} height={40} className="w-10 h-10 object-contain" />,
+                    name: "Go High Level",
+                    height: 40 
+                  },
+                  { 
+                    icon: <SiZapier className="w-10 h-10 text-blue-600" />,
+                    name: "Zapier",
+                    height: 40 
+                  },
+                  { 
+                    icon: <Image src="/logos/vapi.png" alt="Vapi" width={40} height={40} className="w-10 h-10 object-contain" />,
+                    name: "Vapi",
+                    height: 40 
+                  },
+                  { 
+                    icon: <SiOpenai className="w-10 h-10 text-blue-600" />,
+                    name: "OpenAI",
+                    height: 40 
+                  },
+                  { 
+                    icon: <SiAirtable className="w-10 h-10 text-blue-600" />,
+                    name: "Airtable",
+                    height: 40 
+                  },
+                  { 
+                    icon: <SiClaude className="w-10 h-10 text-blue-600" />,
+                    name: "Claude",
+                    height: 40 
+                  },
+                  { 
+                    icon: <SiGooglesheets className="w-10 h-10 text-blue-600" />,
+                    name: "Google Sheets",
+                    height: 40 
+                  },
                 ]}
               />
             </section>
           </div>
         </div>
       </main>
-      <Element name="services">
-        <div className="md:px-0 mx-6 xl:w-4/5 2xl:w-[68%] md:mx-auto">
+      <Element name="services-separator">
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mt-0 mb-4"></div>
+      </Element>
+      <Element name="services" className="scroll-mt-32">
+        <div className="md:px-0 mx-6 xl:w-4/5 2xl:w-[68%] md:mx-auto pt-4">
           <h1 className="text-3xl md:text-5xl md:text-center font-medium">
-            Built from the ground up for efficiency
-            <span className="text-[#5046e6]">.</span>
+            Services
           </h1>
           <p className="md:text-center py-4 md:w-1/2 mx-auto text-xl md:text-2xl text-gray-500">
             Custom AI and automation solutions designed to streamline your
@@ -323,11 +339,11 @@ export default function Home() {
           </div>
         </div>
       </Element>
-      <section className="py-20">
+      <section className="py-32">
         <ScrollBasedVelocityDemo />
       </section>
       <Element name="process">
-        <main className="md:px-0 mx-6 md:mx-auto">
+        <main className="md:px-0 mx-6 md:mx-auto py-32">
           <h1 className="text-3xl md:text-5xl md:text-center font-medium flex items-center gap-x-2 mx-auto justify-center">
             Our{" "}
             <span className="text-blue-500 flex gap-x-1 items-center">
@@ -364,7 +380,7 @@ export default function Home() {
           </div>
         </main>
       </Element>
-      <section>
+      <section className="py-32">
         <main className="md:flex items-center justify-center space-y-6 md:space-y-0 md:gap-x-20 xl:w-4/5 2xl:w-[68%] mx-auto px-6 md:px-0">
           <Image
             src={"/images/business-owner.jpg"}
@@ -398,10 +414,10 @@ export default function Home() {
       <Element name="guarantees">
         <ShootingStarsAndStarsBackgroundDemo />
       </Element>
-      <section className="my-10 md:py-20 xl:w-4/5 2xl:w-[68%] mx-auto">
+      <section className="my-20 md:py-32 xl:w-4/5 2xl:w-[68%] mx-auto">
         <LetsMakeThingsHappenSection />
       </section>
-      <footer className="bg-[#fafafa] py-10  px-6 md:px-0 md:mx-auto border-t">
+      <footer className="bg-[#fafafa] py-20 px-6 md:px-0 md:mx-auto border-t">
         <div className="flex flex-col  justify-between gap-y-3 xl:w-4/5 2xl:w-[68%] mx-auto">
           <h1 className="text-3xl md:text-5xl font-medium ">
             <Image

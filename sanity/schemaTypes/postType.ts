@@ -9,22 +9,36 @@ export const postType = defineType({
   fields: [
     defineField({
       name: 'title',
+      title: 'Title',
       type: 'string',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'slug',
+      title: 'Slug',
       type: 'slug',
       options: {
         source: 'title',
+        maxLength: 96,
       },
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'author',
+      title: 'Author',
       type: 'reference',
       to: {type: 'author'},
+      validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'mainImage',
+      name: 'image',
+      title: 'Image',
       type: 'image',
       options: {
         hotspot: true,
@@ -35,27 +49,32 @@ export const postType = defineType({
           type: 'string',
           title: 'Alternative text',
         })
-      ]
+      ],
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'categories',
+      title: 'Categories',
       type: 'array',
       of: [defineArrayMember({type: 'reference', to: {type: 'category'}})],
     }),
     defineField({
       name: 'publishedAt',
+      title: 'Published At',
       type: 'datetime',
     }),
     defineField({
-      name: 'body',
+      name: 'content',
+      title: 'Content',
       type: 'blockContent',
+      validation: (rule) => rule.required(),
     }),
   ],
   preview: {
     select: {
       title: 'title',
       author: 'author.name',
-      media: 'mainImage',
+      media: 'image',
     },
     prepare(selection) {
       const {author} = selection

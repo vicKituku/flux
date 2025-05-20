@@ -1,6 +1,6 @@
 import ShowcaseNavbar from "@/components/showcase-navbar";
 import { BlurFade } from "@/components/magicui/blur-fade";
-import { ProjectsBlurFadeDemo } from "@/components/demos/projects-blur-fade-demo";
+import BlogSection from "@/components/blog-section";
 import LetsMakeThingsHappenSection from "@/components/ui/lets-make-things-happen";
 import Footer from "@/components/footer";
 
@@ -24,7 +24,7 @@ const Showcase = () => {
           </p>
         </BlurFade>
 
-        <ProjectsBlurFadeDemo />
+        <BlogSection />
         <LetsMakeThingsHappenSection />
       </section>
       <Footer />

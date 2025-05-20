@@ -8,15 +8,50 @@ import LetsMakeThingsHappenSection from "@/components/ui/lets-make-things-happen
 import Footer from "@/components/footer";
 import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image";
-export const revalidate = 60;
-async function getAutomations() {
-  const query = `*[_type == 'automation'] | order(_createdAt desc)`;
 
-  return await client.fetch(query);
+export const revalidate = 60;
+
+const AUTOMATIONS_PER_PAGE = 6;
+
+interface AutomationResponse {
+  automations: {
+    _id: string;
+    title: string;
+    description: string;
+    image: SanityTypes.Automation['image'];
+    slug: string;
+    _createdAt: string;
+  }[];
+  total: number;
 }
 
-export default async function Automations() {
-  const automations: SanityTypes.Automation[] = await getAutomations();
+async function getAutomations(page: number = 1): Promise<AutomationResponse> {
+  const start = (page - 1) * AUTOMATIONS_PER_PAGE;
+  const end = start + AUTOMATIONS_PER_PAGE;
+  
+  const query = `{
+    "automations": *[_type == 'automation'] | order(_createdAt desc)[$start...$end]{
+      _id,
+      title,
+      description,
+      image,
+      "slug": slug.current,
+      _createdAt
+    },
+    "total": count(*[_type == 'automation'])
+  }`;
+  
+  return await client.fetch(query, { start, end });
+}
+
+export default async function Automations({
+  searchParams,
+}: {
+  searchParams: { page?: string };
+}) {
+  const currentPage = Number(searchParams.page) || 1;
+  const { automations, total } = await getAutomations(currentPage);
+  const totalPages = Math.ceil(total / AUTOMATIONS_PER_PAGE);
 
   return (
     <div className="overflow-clip inset-0 -z-10 h-full w-full bg-[#fafafa] bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]">
@@ -31,32 +66,58 @@ export default async function Automations() {
         </div>
         <section>
           <div className="grid md:grid-cols-3 gap-8 mt-10 mb-10 justify-items-center">
-            {automations.map(({ image, title, description, slug }, key) => (
-              <div key={key} className="group">
+            {automations.map(({ image, title, description, slug }, index: number) => (
+              <div key={index} className="group w-full">
                 <BlurFade
                   key={title}
-                  delay={0.25 + key * 0.2}
+                  delay={0.25 + index * 0.2}
                   inView
-                  className={`rounded-lg p-4`}
+                  className="rounded-lg p-4 border border-gray-200 transition-all duration-200 bg-white hover:shadow-[2px_2px_rgba(0,0,0),4px_4px_rgba(0,0,0),6px_6px_rgba(0,0,0),8px_8px_rgba(0,0,0),10px_10px_0px_0px_rgba(0,0,0)] h-full flex flex-col"
                 >
-                  <Link href={`/automations/${slug.current}`}>
+                  <div className="flex flex-col h-full">
                     <Image
                       height={300}
                       width={500}
-                      className="
-                h-[200px] w-full object-cover rounded-lg group-hover:opacity-80 transition-all"
+                      className="h-[200px] w-full object-cover rounded-lg transition-all duration-200"
                       src={urlFor(image).url()}
                       alt={title}
                     />
-                    <h3 className=" text-blue-500 text-lg md:text-2xl font-extrabold pt-4">
-                      {title}
-                    </h3>
-                    <p className="pt-2">{description}</p>
-                  </Link>
+                    <Link href={`/automations/${slug}`}>
+                      <h3 className="text-blue-500 text-lg md:text-2xl font-extrabold pt-4 hover:underline">
+                        {title}
+                      </h3>
+                    </Link>
+                    <p className="pt-2 flex-grow">{description}</p>
+                  </div>
                 </BlurFade>
               </div>
             ))}
           </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex justify-center items-center gap-4 mt-8 mb-12">
+              {currentPage > 1 && (
+                <Link
+                  href={`/automations?page=${currentPage - 1}`}
+                  className="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-100 transition-colors"
+                >
+                  Previous
+                </Link>
+              )}
+              <span className="text-gray-600">
+                Page {currentPage} of {totalPages}
+              </span>
+              {currentPage < totalPages && (
+                <Link
+                  href={`/automations?page=${currentPage + 1}`}
+                  className="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-100 transition-colors"
+                >
+                  Next
+                </Link>
+              )}
+            </div>
+          )}
         </section>
 
         <LetsMakeThingsHappenSection />
