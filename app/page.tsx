@@ -81,61 +81,61 @@ export default function Home() {
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         >
           <div className="flex items-center justify-between h-20">
-            {/* Logo */}
+          {/* Logo */}
             <Link href="/" className="flex-shrink-0 transition-transform hover:scale-105">
-              <Image
-                src="/logo/fluxauto.png"
-                alt="Next Automation Logo"
-                width={140}
-                height={40}
+            <Image
+              src="/logo/fluxauto.png"
+              alt="Next Automation Logo"
+              width={140}
+              height={40}
                 className="w-32 h-auto"
                 priority
-              />
-            </Link>
+            />
+          </Link>
 
-            {/* Desktop Navigation */}
+          {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-10">
-              <ScrollLink
+            <ScrollLink
                 to="services"
                 spy={true}
-                smooth={true}
+              smooth={true}
                 offset={-100}
-                duration={500}
+              duration={500}
                 className="text-base font-medium transition-all duration-200 text-gray-700 hover:text-blue-600 cursor-pointer"
-              >
-                Services
-              </ScrollLink>
+            >
+              Services
+            </ScrollLink>
               <Link 
                 href="/automations" 
                 className="text-base font-medium transition-all duration-200 text-gray-700 hover:text-blue-600"
               >
-                Automations
-              </Link>
+              Automations
+            </Link>
               <Link 
                 href="/blog" 
                 className="text-base font-medium transition-all duration-200 text-gray-700 hover:text-blue-600"
               >
-                Blog
-              </Link>
+              Blog
+            </Link>
             </nav>
 
-            {/* Mobile Menu Button */}
+          {/* Mobile Menu Button */}
             <button 
               className="md:hidden inline-flex items-center justify-center p-2 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200"
               onClick={() => setIsOpen(!isOpen)}
             >
               <span className="sr-only">Open main menu</span>
               {isOpen ? <X className="block h-6 w-6" /> : <Menu className="block h-6 w-6" />}
-            </button>
+          </button>
 
             {/* Desktop CTA */}
             <div className="hidden md:flex items-center">
-              <Link
+            <Link
                 href="/meeting"
                 className="inline-flex items-center justify-center px-6 py-2.5 text-base font-medium text-white bg-black rounded-lg border-2 border-black hover:bg-blue-600 hover:border-blue-600 hover:scale-105 transition-all duration-300 whitespace-nowrap shadow-sm hover:shadow-md"
-              >
-                Book a call
-              </Link>
+            >
+              Book a call
+            </Link>
             </div>
           </div>
         </div>
@@ -173,41 +173,41 @@ export default function Home() {
                 </button>
               </div>
               <div className="px-4 pt-6 pb-8 space-y-6 bg-white">
-                <ScrollLink
+            <ScrollLink
                   to="services"
                   spy={true}
-                  smooth={true}
+              smooth={true}
                   offset={-100}
                   duration={500}
                   className="block py-3 text-lg font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200 cursor-pointer"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Services
-                </ScrollLink>
-                <Link
-                  href="/automations"
+              onClick={() => setIsOpen(false)}
+            >
+              Services
+            </ScrollLink>
+            <Link
+              href="/automations"
                   className="block py-3 text-lg font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Automations
-                </Link>
-                <Link
-                  href="/blog"
+              onClick={() => setIsOpen(false)}
+            >
+              Automations
+            </Link>
+            <Link
+              href="/blog"
                   className="block py-3 text-lg font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Blog
-                </Link>
+              onClick={() => setIsOpen(false)}
+            >
+              Blog
+            </Link>
                 <div className="pt-6">
-                  <Link
-                    href="/meeting"
+              <Link
+                href="/meeting"
                     className="w-full inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-black rounded-lg border-2 border-black hover:bg-blue-600 hover:border-blue-600 transition-all duration-300 shadow-sm hover:shadow-md"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Book a Call
-                  </Link>
-                </div>
-              </div>
+                onClick={() => setIsOpen(false)}
+              >
+                Book a Call
+              </Link>
+            </div>
+          </div>
             </div>
           </div>
         </div>
@@ -242,13 +242,13 @@ export default function Home() {
                 md:px-8 
                 py-3 
                 text-base
-                md:text-lg
+      md:text-lg
                 font-medium 
                 text-white 
                 bg-black 
                 rounded-lg 
-                border-2 
-                border-black 
+      border-2 
+      border-black 
                 hover:bg-blue-600 
                 hover:border-blue-600 
                 hover:scale-105 
@@ -275,11 +275,11 @@ export default function Home() {
                 text-base
                 md:text-lg
                 font-medium 
-                bg-white
+              bg-white
                 text-black
                 rounded-lg 
-                border-2 
-                border-black 
+        border-2
+        border-black
                 hover:bg-gray-50
                 hover:scale-105 
                 transition-all 

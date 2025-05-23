@@ -1,4 +1,4 @@
 export const site = {
-  name: "Flux Automations",
-  url: "https://fluxautomations.io",
+  name: "Next Automations",
+  url: "https://nextautomations.io",
 };

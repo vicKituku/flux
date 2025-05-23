@@ -32,19 +32,19 @@ const ShowcaseNavbar = () => {
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
+        {/* Logo */}
           <Link href="/" className="flex-shrink-0 transition-transform hover:scale-105">
-            <Image
-              src="/logo/fluxauto.png"
-              alt="FluxAuto Logo"
-              width={140}
-              height={40}
+          <Image
+            src="/logo/fluxauto.png"
+            alt="FluxAuto Logo"
+            width={140}
+            height={40}
               className="w-32 h-auto"
               priority
-            />
-          </Link>
+          />
+        </Link>
 
-          {/* Desktop Navigation */}
+        {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-10">
             <ScrollLink 
               to="services"
@@ -54,7 +54,7 @@ const ShowcaseNavbar = () => {
               duration={500}
               className="text-base font-medium transition-all duration-200 text-gray-700 hover:text-blue-600 cursor-pointer"
             >
-              Services
+            Services
             </ScrollLink>
             <Link 
               href="/automations" 
@@ -64,8 +64,8 @@ const ShowcaseNavbar = () => {
                   : "text-gray-700 hover:text-blue-600"
               }`}
             >
-              Automations
-            </Link>
+            Automations
+          </Link>
             <Link 
               href="/blog" 
               className={`text-base font-medium transition-all duration-200 ${
@@ -74,18 +74,18 @@ const ShowcaseNavbar = () => {
                   : "text-gray-700 hover:text-blue-600"
               }`}
             >
-              Blog
-            </Link>
+            Blog
+          </Link>
           </nav>
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center">
-            <Link
+          <Link
               href="/meeting"
               className="inline-flex items-center justify-center px-6 py-2.5 text-base font-medium text-white bg-black rounded-lg border-2 border-black hover:bg-blue-600 hover:border-blue-600 hover:scale-105 transition-all duration-300 whitespace-nowrap shadow-sm hover:shadow-md"
-            >
-              Book a call
-            </Link>
+          >
+            Book a call
+          </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -139,42 +139,42 @@ const ShowcaseNavbar = () => {
                 offset={-100}
                 duration={500}
                 className="block py-3 text-lg font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200 cursor-pointer"
-                onClick={() => setIsOpen(false)}
-              >
-                Services
+            onClick={() => setIsOpen(false)}
+          >
+            Services
               </ScrollLink>
-              <Link
-                href="/automations"
+          <Link
+            href="/automations"
                 className={`block py-3 text-lg font-medium transition-colors duration-200 ${
                   isActive("/automations")
                     ? "text-blue-600"
                     : "text-gray-700 hover:text-blue-600"
                 }`}
-                onClick={() => setIsOpen(false)}
-              >
-                Automations
-              </Link>
-              <Link
-                href="/blog"
+            onClick={() => setIsOpen(false)}
+          >
+            Automations
+          </Link>
+          <Link
+            href="/blog"
                 className={`block py-3 text-lg font-medium transition-colors duration-200 ${
                   isActive("/blog")
                     ? "text-blue-600"
                     : "text-gray-700 hover:text-blue-600"
                 }`}
-                onClick={() => setIsOpen(false)}
-              >
-                Blog
-              </Link>
+            onClick={() => setIsOpen(false)}
+          >
+            Blog
+          </Link>
               <div className="pt-6">
-                <Link
-                  href="/meeting"
+            <Link
+              href="/meeting"
                   className="w-full inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-black rounded-lg border-2 border-black hover:bg-blue-600 hover:border-blue-600 transition-all duration-300 shadow-sm hover:shadow-md"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Book a Call
-                </Link>
-              </div>
-            </div>
+              onClick={() => setIsOpen(false)}
+            >
+              Book a Call
+            </Link>
+          </div>
+        </div>
           </div>
         </div>
       </div>
