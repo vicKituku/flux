@@ -13,26 +13,35 @@ const font = Space_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Next Automations | AI & Automation Solutions for Smarter Business Growth",
-    template: "%s | Next Automations"
+    default: site.name,
+    template: `%s | ${site.name}`,
   },
-  description: "Transform your business with Next Automations - Leading provider of AI-powered automation solutions for enhanced efficiency, productivity, and growth",
-  keywords: ["automation", "AI", "business automation", "workflow automation", "digital transformation", "business efficiency", "AI solutions"],
-  authors: [{ name: "Victor Kituku" }],
-  creator: "Victor Kituku",
+  description: site.description,
+  keywords: ['Next.js', 'React', 'JavaScript', 'Web Development', 'Blog'],
+  authors: [{ name: 'Victor Kituku', url: 'https://www.linkedin.com/in/victor-kituku/' }],
+  creator: 'Victor Kituku',
   openGraph: {
-    type: "website",
-    locale: "en_GB",
+    type: 'website',
+    locale: 'en_US',
     url: site.url,
-    title: "Next Automations | AI & Automation Solutions",
-    description: "Transform your business with Next Automations - Leading provider of AI-powered automation solutions for enhanced efficiency, productivity, and growth",
-    siteName: site.name
+    title: site.name,
+    description: site.description,
+    siteName: site.name,
+    images: [
+      {
+        url: `${site.url}/og-default.png`,
+        width: 1200,
+        height: 630,
+        alt: site.name,
+      },
+    ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Next Automations | AI & Automation Solutions",
-    description: "Transform your business with Next Automations - Leading provider of AI-powered automation solutions",
-    creator: "@victorkituku"
+    card: 'summary_large_image',
+    title: site.name,
+    description: site.description,
+    creator: '@victorkituku',
+    images: [`${site.url}/og-default.png`],
   },
   robots: {
     index: true,
@@ -45,16 +54,22 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon-16x16.png',
+    apple: '/apple-touch-icon.png',
+  },
+  manifest: '/site.webmanifest',
   verification: {
-    google: "your-google-verification-code", // You'll need to add this
+    google: 'your-google-site-verification',
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en">
       <body className={`${font.className} antialiased`}>

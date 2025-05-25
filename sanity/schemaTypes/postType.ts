@@ -67,7 +67,23 @@ export const postType = defineType({
     defineField({
       name: 'content',
       title: 'Content',
-      type: 'blockContent',
+      type: 'text',
+      rows: 20,
+      description: `Enter your markdown content here. To create a table of contents, add this format in your markdown:
+
+## Table of Contents
+
+- [Section Name](#section-name)
+- [Another Section](#another-section)
+  - [Subsection](#subsection)
+  - [Another Subsection](#another-subsection)
+
+Make sure your section headings match exactly with the links in your table of contents.
+For example, if you have a link [Section Name](#section-name), you should have a heading:
+
+## Section Name
+
+The heading text and the link text must match (case-sensitive).`,
       validation: (rule) => rule.required(),
     }),
   ],

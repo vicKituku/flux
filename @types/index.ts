@@ -17,7 +17,7 @@ export namespace SanityTypes {
       current: string;
     };
     image: SanityImageAssetDocument;
-    content: any;
+    content: string;
     author: Author<SanityAssetDocument | undefined>;
     category?: BlogCategory;
   }

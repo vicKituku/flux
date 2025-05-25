@@ -3,6 +3,19 @@
 @plugin "tailwindcss-animate";
 @plugin "@tailwindcss/typography";
 
+/* Syntax highlighting styles */
+pre {
+  @apply my-4 p-4 rounded-lg overflow-x-auto;
+}
+
+code {
+  @apply font-mono text-sm;
+}
+
+:not(pre) > code {
+  @apply bg-gray-100 px-1.5 py-0.5 rounded text-gray-800;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
