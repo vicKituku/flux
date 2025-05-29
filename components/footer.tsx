@@ -68,13 +68,13 @@ const Footer = () => {
             <h3 className="text-sm font-semibold text-gray-900 mb-4">Contact</h3>
             <ul className="space-y-3">
               <li>
-                <a href="tel:+254716694890" className="text-sm text-gray-500 hover:text-gray-700">
-                  +254 716 694 890
+                <a href="tel:+254705044913" className="text-sm text-gray-500 hover:text-gray-700">
+                  +254 705 044 913
                 </a>
               </li>
               <li>
-                <a href="mailto:victorkituku@gmail.com" className="text-sm text-gray-500 hover:text-gray-700">
-                  victorkituku@gmail.com
+                <a href="mailto:dancun.n@nextautomations.com" className="text-sm text-gray-500 hover:text-gray-700">
+                  dancun.n@nextautomations.com
                 </a>
               </li>
               <li>
