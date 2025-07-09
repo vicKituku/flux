@@ -24,13 +24,13 @@ const Footer = () => {
               Empowering businesses with intelligent automation solutions that drive growth and efficiency.
             </p>
             <div className="flex gap-4">
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-600">
+              <a href="https://twitter.com/vik_theafrican" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-600">
                 <FaTwitter size={20} />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-600">
+              <a href="https://linkedin.com/in/victor-kituku/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-600">
                 <FaLinkedin size={20} />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-600">
+              <a href="https://instagram.com/vik_theafrican" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-600">
                 <FaInstagram size={20} />
               </a>
             </div>
@@ -68,13 +68,13 @@ const Footer = () => {
             <h3 className="text-sm font-semibold text-gray-900 mb-4">Contact</h3>
             <ul className="space-y-3">
               <li>
-                <a href="tel:+254705044913" className="text-sm text-gray-500 hover:text-gray-700">
-                  +254 705 044 913
+                <a href="tel:+254716694890" className="text-sm text-gray-500 hover:text-gray-700">
+                  +254 716 694 890
                 </a>
               </li>
               <li>
-                <a href="mailto:dancun.n@nextautomations.com" className="text-sm text-gray-500 hover:text-gray-700">
-                  dancun.n@nextautomations.com
+                <a href="mailto:info@nextautomations.io" className="text-sm text-gray-500 hover:text-gray-700">
+                  info@nextautomations.io
                 </a>
               </li>
               <li>
