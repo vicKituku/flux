@@ -8,7 +8,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
-import { getCategories, getPosts, POSTS_PER_PAGE } from "@/app/blog/actions";
+import { getCategories, getPosts } from "@/app/blog/actions";
+
+const POSTS_PER_PAGE = 6;
 
 export default function BlogSection() {
   const [currentPage, setCurrentPage] = useState(1);
