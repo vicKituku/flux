@@ -13,12 +13,13 @@ import { BlogPosting, WithContext } from "schema-dts";
 import StructuredData from "@/components/StructuredData";
 export const revalidate = 60;
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
   const query = `*[_type == 'automation' && slug.current == $slug]{_id, title, description, image}[0]`;
-  const data = await client.fetch(query, { slug: params.slug });
+  const data = await client.fetch(query, { slug });
   return {
     applicationName: site.name,
     creator: "Victor Kituku",
@@ -49,10 +50,11 @@ function formatDate(dateString: Date): string {
 }
 
 export default async function Page({
-  params: { slug },
+  params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
+  const { slug } = await params;
   const automation = await getAutomation(slug);
   const schemaData: WithContext<BlogPosting> = {
     "@context": "https://schema.org",
