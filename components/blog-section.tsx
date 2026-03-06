@@ -8,42 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
-const POSTS_PER_PAGE = 6;
-
-async function getCategories() {
-  const query = `*[_type == "blogCategory"] {
-    _id,
-    title,
-    description
-  }`;
-  return await client.fetch(query);
-}
-
-async function getPosts(page: number = 1, categoryId?: string) {
-  const start = (page - 1) * POSTS_PER_PAGE;
-  const end = start + POSTS_PER_PAGE;
-  
-  const categoryFilter = categoryId ? `&& category._ref == "${categoryId}"` : '';
-  
-  const query = `{
-    "posts": *[_type == 'post' ${categoryFilter}] | order(_createdAt desc)[$start...$end]{
-      _id,
-      title,
-      description,
-      image,
-      content,
-      "slug": slug.current,
-      "category": category->{
-        _id,
-        title
-      },
-      _createdAt
-    },
-    "total": count(*[_type == 'post' ${categoryFilter}])
-  }`;
-  
-  return await client.fetch(query, { start, end });
-}
+import { getCategories, getPosts, POSTS_PER_PAGE } from "@/app/blog/actions";
 
 export default function BlogSection() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -93,11 +58,10 @@ export default function BlogSection() {
         <button
           key="all"
           onClick={() => handleCategoryClick(undefined)}
-          className={`px-4 py-2 rounded-full border-2 transition-all duration-200 ${
-            !selectedCategory
-              ? "bg-black text-white border-black"
-              : "border-gray-200 hover:border-gray-300"
-          }`}
+          className={`px-4 py-2 rounded-full border-2 transition-all duration-200 ${!selectedCategory
+            ? "bg-black text-white border-black"
+            : "border-gray-200 hover:border-gray-300"
+            }`}
         >
           All
         </button>
@@ -105,11 +69,10 @@ export default function BlogSection() {
           <button
             key={category._id}
             onClick={() => handleCategoryClick(category._id)}
-            className={`px-4 py-2 rounded-full border-2 transition-all duration-200 ${
-              selectedCategory === category._id
-                ? "bg-black text-white border-black"
-                : "border-gray-200 hover:border-gray-300"
-            }`}
+            className={`px-4 py-2 rounded-full border-2 transition-all duration-200 ${selectedCategory === category._id
+              ? "bg-black text-white border-black"
+              : "border-gray-200 hover:border-gray-300"
+              }`}
           >
             {category.title}
           </button>
